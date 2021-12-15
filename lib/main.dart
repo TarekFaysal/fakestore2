@@ -1,7 +1,14 @@
 import 'package:fakestore2/screens/splash/splash_screen.dart';
+import 'package:fakestore2/services/product_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+setupLocator() {
+  GetIt.I.registerLazySingleton(() => ProductService());
+}
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 

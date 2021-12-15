@@ -1,7 +1,31 @@
+import 'package:fakestore2/model/api_response.dart';
+import 'package:fakestore2/services/product_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  ProductService get productService => GetIt.I<ProductService>();
+  APIResponse<List<String>>? _apiResponseCategories;
+
+  void _getAllCategories() async {
+    setState(() {});
+    _apiResponseCategories = await productService.getAllCategories();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getAllCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
