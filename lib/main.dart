@@ -1,3 +1,5 @@
+import 'package:fakestore2/screens/home/home_screen.dart';
+
 import './screens/splash/splash_screen.dart';
 import './services/product_service.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
+      routes: {HomeScreen.routeName: (ctx) => const HomeScreen()},
     );
   }
 }
