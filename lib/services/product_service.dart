@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fakestore2/model/api_response.dart';
+import '../model/api_response.dart';
 import 'package:http/http.dart' as http;
 
 class ProductService {

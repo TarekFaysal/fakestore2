@@ -1,5 +1,5 @@
-import 'package:fakestore2/model/api_response.dart';
-import 'package:fakestore2/services/product_service.dart';
+import '../../model/api_response.dart';
+import '../../services/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
