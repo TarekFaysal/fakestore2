@@ -1,3 +1,4 @@
+import 'package:fakestore2/screens/details/details_screen.dart';
 import 'package:fakestore2/screens/home/home_screen.dart';
 
 import './screens/splash/splash_screen.dart';
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const SplashScreen(),
-      routes: {HomeScreen.routeName: (ctx) => const HomeScreen()},
+      routes: {
+        HomeScreen.routeName: (ctx) => const HomeScreen(),
+        DetailsScreen.routeName: (ctx) => const DetailsScreen()
+      },
     );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:fakestore2/model/product.dart';
 import 'package:fakestore2/model/products_categories.dart';
+import 'package:fakestore2/screens/details/details_screen.dart';
 import 'package:fakestore2/screens/home/product_card.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,6 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: categories!.length,
       child: Scaffold(
-        backgroundColor: Colors.orangeAccent,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Fake Store"),
@@ -31,18 +32,32 @@ class HomeScreen extends StatelessWidget {
           children: categories
               .map(
                 (e) => GridView.builder(
-                    itemCount: products?.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    itemCount: products!
+                        .where((element) => element.category == e)
+                        .toList()
+                        .length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 50,
                       // crossAxisSpacing: 50,
                       childAspectRatio: 2.2 / 2,
                     ),
                     itemBuilder: (context, index) {
-                      return ProductCard(
-                        title: products![index].title,
-                        image: products[index].iamge,
-                        price: products[index].price,
+                      List<Product> productsInCategory = products
+                          .where((element) => element.category == e)
+                          .toList();
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                              DetailsScreen.routeName,
+                              arguments: productsInCategory[index]);
+                        },
+                        child: ProductCard(
+                          title: productsInCategory[index].title,
+                          image: productsInCategory[index].iamge,
+                          price: productsInCategory[index].price,
+                        ),
                       );
                     }),
               )
