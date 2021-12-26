@@ -1,5 +1,6 @@
 import 'package:fakestore2/model/product.dart';
 import 'package:fakestore2/model/products_categories.dart';
+import 'package:fakestore2/screens/cart/cart_screen.dart';
 import 'package:fakestore2/screens/details/details_screen.dart';
 import 'package:fakestore2/screens/home/product_card.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,14 @@ class HomeScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: const Text("Fake Store"),
           centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+            )
+          ],
           bottom: TabBar(
               labelColor: Colors.yellow,
               unselectedLabelColor: Colors.white,

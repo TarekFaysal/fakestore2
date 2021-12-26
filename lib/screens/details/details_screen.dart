@@ -1,10 +1,16 @@
 import 'package:fakestore2/model/product.dart';
 import 'package:flutter/material.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   static const routeName = "/details";
   const DetailsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     Product product = ModalRoute.of(context)!.settings.arguments as Product;
@@ -64,7 +70,11 @@ class DetailsScreen extends StatelessWidget {
                     padding: EdgeInsets.all(3),
                     color: Colors.deepOrange,
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            if (quantity > 1) quantity--;
+                          });
+                        },
                         icon: Icon(
                           Icons.remove,
                           color: Colors.white,
@@ -72,7 +82,7 @@ class DetailsScreen extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 25),
                   child: Text(
-                    "1",
+                    quantity.toString(),
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -83,7 +93,11 @@ class DetailsScreen extends StatelessWidget {
                     padding: EdgeInsets.all(3),
                     color: Colors.deepOrange,
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            quantity++;
+                          });
+                        },
                         icon: Icon(
                           Icons.add,
                           color: Colors.white,

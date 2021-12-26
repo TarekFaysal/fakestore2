@@ -1,5 +1,7 @@
+import 'package:fakestore2/screens/cart/cart_screen.dart';
 import 'package:fakestore2/screens/details/details_screen.dart';
 import 'package:fakestore2/screens/home/home_screen.dart';
+import 'package:fakestore2/services/user_service.dart';
 
 import './screens/splash/splash_screen.dart';
 import './services/product_service.dart';
@@ -8,6 +10,7 @@ import 'package:get_it/get_it.dart';
 
 setupLocator() {
   GetIt.I.registerLazySingleton(() => ProductService());
+  GetIt.I.registerLazySingleton(() => UserService());
 }
 
 void main() {
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -35,10 +39,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: const CartScreen(),
       routes: {
         HomeScreen.routeName: (ctx) => const HomeScreen(),
-        DetailsScreen.routeName: (ctx) => const DetailsScreen()
+        DetailsScreen.routeName: (ctx) => const DetailsScreen(),
+        CartScreen.routeName: (ctx) => const CartScreen()
       },
     );
   }
